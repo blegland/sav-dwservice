@@ -31,6 +31,20 @@ else mkdir /usr/share/sav ; fi
 cd /usr/share/sav
 wget https://www.dwservice.net/download/dwagent_x86.sh
 chmod +x dwagent_x86.sh
+echo "#!/bin/bash" >> /bin/sav-start
+echo "if (whoami != root) ; then echo 'Please run as root. Ex: sudo dwservice' ; echo 1 ; fi" >> /bin/sav-start
+echo "echo '2' | /usr/share/sav/SAV-ATHENA.sh" >> /bin/sav-start
+echo "clear ; echo 'Fin de transmission'" >> bin/sav-start
+
+echo "#!/bin/bash" >> /bin/sav-stop
+echo "killall dwagent ; clear ; echo 'Fin de transmission'" >> /bin/sav-start
+echo "killall dwagent ; clear ; echo 'Fin de transmission'" >> /bin/sav-end
+
+cd /bin/
+wget wget https://raw.githubusercontent.com/blegland/sav-dwservice/main/dwservice.sh
+mv dwservice.sh dwservice
+chmod +x dwservice
+chmod +x sav-*
 
 #execution de dwservice
 echo "2" | /usr/share/sav/dwagent_x86.sh
