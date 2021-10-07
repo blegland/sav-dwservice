@@ -25,6 +25,7 @@ case $1 in
 	rm /bin/sav-stop
 	rm /bin/sav-end
 	rm /bin/dwservice
+	exit 0
     ;;
     *)
         if (whoami != root) ; then echo "Please run as root. Ex: sudo dwservice" ; exit 1 ; fi
