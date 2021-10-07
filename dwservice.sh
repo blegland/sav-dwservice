@@ -13,14 +13,21 @@ case $1 in
         exit 0
     ;;
     stop|-s|--stop)
-        if (whoami != root) ; then echo "Please run as root. Ex: sudo dwservice" ; echo 1 ; fi
+        if (whoami != root) ; then echo "Please run as root. Ex: sudo dwservice" ; exit 1 ; fi
         echo "Procédure d'arret de DWSercice"
         killall dwagent
         echo "Fin de transmission"
         exit 0
     ;;
+    --Remove)
+	if (whoami != root) ; then echo "Please run as root. Ex: sudo dwservice" ; exit 1 ; fi
+	rm /bin/sav-start
+	rm /bin/sav-stop
+	rm /bin/sav-end
+	rm /bin/dwservice
+    ;;
     *)
-        if (whoami != root) ; then echo "Please run as root. Ex: sudo dwservice" ; echo 1 ; fi
+        if (whoami != root) ; then echo "Please run as root. Ex: sudo dwservice" ; exit 1 ; fi
         echo "Procédure de lancement DWService"
     ;;
 esac
